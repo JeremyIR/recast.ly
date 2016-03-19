@@ -3,16 +3,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: null,
+      currentVideo: undefined,
       videoList: this.props.videos
     };
   }
 
-  //handling changing current video.
   changeCurrentVideo(video) {
+    console.log(this);
     this.setState({
       currentVideo: video
-    });
+    }).bind(this);
   }
 
   render() {

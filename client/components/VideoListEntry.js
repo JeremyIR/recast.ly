@@ -3,6 +3,7 @@ class VideoListEntry extends React.Component {
     super(props);
   }
   render() {
+    //debugger;
     return (
       <div className="video-list-entry">
         <div className="media-left media-middle">
