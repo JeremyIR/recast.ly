@@ -3,8 +3,38 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: this.props.videos[0],
-      videoList: this.props.videos
+      currentVideo: {
+        "id": {
+          "videoId": "4ZAEBxGipoA"
+        },
+        "snippet": {
+        "title": "No video passed in yet",
+        "description": "Load a video already!",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/4ZAEBxGipoA/default.jpg",
+              "width": 120,
+              "height": 90
+            }
+          }
+        }, //this.props.videos[0],
+      },
+      videoList: [{        
+        "id": {
+          "videoId": "4ZAEBxGipoA"
+        },
+        "snippet": {
+          "title": "No video passed in yet",
+          "description": "Load a video already!",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/4ZAEBxGipoA/default.jpg",
+              "width": 120,
+              "height": 90
+            }
+          },
+        }
+      }], //this.props.videos
     };
   }
 
@@ -14,6 +44,23 @@ class App extends React.Component {
     });
     console.log(this);
   }
+
+  updateVideoList(videoArray) {
+    this.setState({
+      videoList: videoArray.items
+    });
+  }
+
+  componentDidMount() {
+    console.log('firing componentDidMount');
+    window.searchYouTube({
+      key: window.YOUTUBE_API_KEY,
+      q: 'cats',
+      maxResults: 5,
+      part: 'snippet',
+    }, this.updateVideoList.bind(this));
+  }
+
 
   render() {
     return (
