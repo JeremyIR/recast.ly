@@ -47,9 +47,11 @@ class App extends React.Component {
   }
 
   updateCurrentQuery(q) {
+    console.log(this);
     this.setState({
       currentQuery: q
     });
+    this.componentDidMount();
   }
 
   updateVideoList(videoArray) {
