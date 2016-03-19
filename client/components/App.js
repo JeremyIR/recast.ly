@@ -9,6 +9,11 @@ class App extends React.Component {
   }
 
   //handling changing current video.
+  changeCurrentVideo(video) {
+    this.setState({
+      currentVideo: video
+    });
+  }
 
   render() {
     return (
@@ -18,7 +23,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.videoList[0]}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videoList} />
+          <VideoList videos={this.state.videoList} parentProps={this.changeCurrentVideo} />
         </div>
       </div>
     );
