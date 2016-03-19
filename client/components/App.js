@@ -3,6 +3,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentQuery: 'cats',
       currentVideo: {
         "id": {
           "videoId": "4ZAEBxGipoA"
@@ -45,6 +46,12 @@ class App extends React.Component {
     console.log(this);
   }
 
+  updateCurrentQuery(q) {
+    this.setState({
+      currentQuery: q
+    });
+  }
+
   updateVideoList(videoArray) {
     this.setState({
       videoList: videoArray.items
@@ -55,7 +62,7 @@ class App extends React.Component {
     console.log('firing componentDidMount');
     window.searchYouTube({
       key: window.YOUTUBE_API_KEY,
-      q: 'cats',
+      q: this.state.currentQuery,
       maxResults: 5,
       part: 'snippet',
     }, this.updateVideoList.bind(this));
@@ -65,7 +72,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav search={this.updateCurrentQuery.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
