@@ -3,16 +3,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: undefined,
+      currentVideo: this.props.videos[0],
       videoList: this.props.videos
     };
   }
 
   changeCurrentVideo(video) {
-    console.log(this);
     this.setState({
       currentVideo: video
-    }).bind;
+    });
+    console.log(this);
   }
 
   render() {
@@ -20,7 +20,7 @@ class App extends React.Component {
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer video={this.state.videoList[0]}/>
+          <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
           <VideoList videos={this.state.videoList} parentProps={this.changeCurrentVideo.bind(this)} />
